@@ -1,0 +1,69 @@
+@startuml
+
+interface MessageListener
+
+MessageListener <|-- QTAOrderSyncListener
+QTAOrderSyncListener --> QTAOrderSyncService
+第三方HTTP请求 --> CtripOrderSyncService
+第三方HTTP请求 --> ElongOrderSyncService
+QTAOrderSyncService-->EBookingOrderSyncService
+CtripOrderSyncService-->EBookingOrderSyncService
+ElongOrderSyncService-->EBookingOrderSyncService
+EBookingOrderSyncService --> OrderStoreService
+OrderCRUDService <|-- OrderStoreService
+QTAOrderSyncService-->Event
+CtripOrderSyncService-->Event
+ElongOrderSyncService-->Event
+Event-->OrderChangedMonitorService
+OrderChangedMonitorService-->OpenApiOrderPushEventHandler
+OrderRepushableService<|-- OpenApiQunarOrderPushService
+OrderRepushableService<|-- OpenApiCtripOrderPushService
+OpenApiOrderPushEventHandler-->OpenApiQunarOrderPushService
+OpenApiOrderPushEventHandler-->OpenApiCtripOrderPushService
+OpenApiQunarOrderPushService<|-- OrderPushToCtripEBService
+OpenApiQunarOrderPushService<|--OrderPushToElongEBService
+OpenApiQunarOrderPushService<|--OrderPushToKZTService
+OpenApiQunarOrderPushService<|--OrderPushToZHONGHUIService
+OpenApiQunarOrderPushService<|--QunarOrderPushToKlkService
+
+OpenApiCtripOrderPushService<|--CtripOrderPushToKlkService
+
+class QTAOrderSyncListener {
+onMessage()
+}
+
+class EBookingOrderSyncService {
+onMessage()
+}
+class QTAOrderSyncService {
++boolean syncOrder()
+}
+interface  第三方HTTP请求
+class CtripOrderSyncService {
++boolean syncOrder()
+}
+class ElongOrderSyncService {
++boolean syncOrder()
+}
+
+class OrderChangedMonitorService {
+orderChanged()
+pushOrderToThirdPart()
+}
+class OrderRepushableService{
+}
+abstract class OpenApiQunarOrderPushService{
+}
+abstract class OpenApiCtripOrderPushService{
+}
+
+class Event{
+}
+class OpenApiOrderPushEventHandler{
+qunarOrderPushToThirdPart()
+ctripOrderPushToThirdPart()
+}
+interface  OrderCRUDService
+class OrderStoreService{
+}
+@enduml

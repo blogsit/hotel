@@ -1,0 +1,12 @@
+@startuml
+(*)  --> "应用maven依赖EPush"
+--> "调用EPushClient推送pushMessage"
+--> "通过zookeper获取可用的EPush，dubbo服务"
+--> "推送实现类产生一个新的推送线程"
+If "检查webSocket连接是否存在" then
+--> [存在] "向client端推送消息"
+--> "通知请求应用"
+else
+--> [不存在]"通知请求应用"
+-->(*)
+@enduml

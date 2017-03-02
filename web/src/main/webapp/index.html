@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>API接口测试</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="测试界面">
+    <meta name="author" content="hua.chen">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body {
+        padding-top: 60px;
+        font-family: '微软雅黑';
+    }
+    h1, h2, h3, h4{
+        font-family: '微软雅黑';
+    }
+    .edit-box{
+        width: 100%;
+        margin: 10px auto;
+        min-height:600px;
+        padding: 3px;
+        outline: 0;
+        font-size: 12px;
+        word-wrap: break-word;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    #http-url{
+        width:800px;
+    }
+    #http-query, #http-result{
+        min-height:600px;
+    }
+    #button-list{
+        margin: 10px auto;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document.body).ready(function(){
+        $("#test-submit").click(function(){
+            var url = $("#http-url").val();
+            var method = $("#http-method").val();
+            var query = $("#http-query").val();
+            $.ajax({
+                url: url,
+                type: method,
+                data: query,
+                processData: false,
+                contentType: 'application/json;charset=UTF-8',
+                success: function(data){
+                    $("#http-result").html(JSON.stringify(data, null, 2));
+                },
+                error: function(e){
+                    $("#http-result").html("ajax.error!!!\n" + JSON.stringify(e, null, 2));
+                }
+            });
+        });
+    });
+</script>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">测试页面</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#http-test">HTTP接口测试</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container">
+
+    <h3>HTTP测试页面</h3>
+    <div>
+        <div class="row">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <b>接口地址</b>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="http-url" placeholder="接口地址">
+                </div>
+                <div class="form-group">
+                    <select id="http-method" class="form-control">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" id="test-submit">提交</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>请求参数</h3>
+                <textarea class="form-control" id="http-query"></textarea>
+            </div>
+            <div  class="col-md-8 offset4">
+                <h3>返回结果</h3>
+                <textarea class="form-control" id="http-result"></textarea>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

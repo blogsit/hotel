@@ -1,0 +1,15 @@
+@startuml
+(*)  --> "用户订单查询操作"
+--> "Elasticsearch集群按条件搜索聚合返回列表数据."
+--> "酒店查看消息点击[去处理],获取具体产品id的夜宵报价"
+--> "后端通过全局卖价变量计算整体报价返回给前端"
+If "" then
+--> [同意更改] "调用updateProductPrice()"
+--> "进行关联updateRefProduct()"
+--> "记录日志chase_price_operate_log"
+else
+--> [我再想想] "回到首页‘待办事项’，并不再提醒此条‘房价维护’通知"
+--> "记录日志chase_price_operate_log"
+Endif
+-->(*)
+@enduml

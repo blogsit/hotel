@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="visitOrder">
+	<!-- 插入预约订单 -->
+	<insert id="insertVisitOrder" parameterType="com.blog.blogsit.modle.VisitOrder">
+		insert into
+		visit_order(user_id,user_name,customer,address,is_audit,visiting_time,create_time)
+		values(#{userId},#{userName},#{customer},#{address},#{isAudit},#{visitingTime},#{createTime})
+	</insert>
+	<!-- 查询预约订单 -->
+	<select id="queryVisitOrder" parameterType="map"
+		resultType="com.blog.blogsit.modle.VisitOrder">
+		select
+		vo.id,
+		vo.user_id ,
+		vo.user_name,
+		vo.customer,
+		vo.address,
+		vo.is_audit,
+		vo.visiting_time,
+		vo.create_time
+		from
+		visit_order vo
+		<where>
+			<if test="userName !=null">
+				and vo.user_name=#{userName}
+			</if>
+			<if test="customer !=null">
+				and vo.customer=#{customer}
+			</if>
+		</where>
+		limit 100
+	</select>
+</mapper>

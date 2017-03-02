@@ -1,0 +1,6 @@
+@startuml
+client浏览器 -> EPushServer:[1]建立连接Uid为业务推送的标识(eb的账号或QunarMan账号)
+EPushServer -> 业务系统:[2]推送用户上下线QMQ消息
+业务系统 -> EPushServer:[3]通过提供EPushClient 直接调用push接口
+EPushServer --> client浏览器:[4]将消息推送给浏览器端
+@enduml

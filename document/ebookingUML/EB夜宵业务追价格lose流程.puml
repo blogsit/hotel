@@ -1,0 +1,15 @@
+@startuml
+(*)  --> "运营给一批包含酒店信息和房型信息的名单导入到eb_chase_price_list"
+--> "手动触发LmChasePriceTask,生成消息保存到notify_message表中设置超时时间为5天"
+--> "酒店查看消息点击[去处理],获取具体产品id的夜宵报价"
+--> "后端通过全局卖价变量计算整体报价返回给前端"
+If "" then
+--> [同意更改] "调用updateProductPrice()"
+--> "将对应的夜销报价和直销报价（如果出现最低价<最高价50%时，不取该报价，取次低报价）进行关联updateRefProduct()"
+--> "记录日志chase_price_operate_log"
+else
+--> [我再想想] "回到首页‘待办事项’，并不再提醒此条‘房价维护’通知"
+--> "记录日志chase_price_operate_log"
+Endif
+-->(*)
+@enduml

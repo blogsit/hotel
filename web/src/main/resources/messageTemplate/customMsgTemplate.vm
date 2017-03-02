@@ -1,0 +1,8 @@
+{
+    "touser":"${userOpenId}",
+    "msgtype":"text",
+    "text":
+    {
+         "content":"${content}"
+    }
+}

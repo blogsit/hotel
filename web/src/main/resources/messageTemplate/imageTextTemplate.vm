@@ -1,0 +1,18 @@
+<xml>
+    <ToUserName><![CDATA[${message.toUserName}]]></ToUserName>
+    <FromUserName><![CDATA[${message.fromUserName}]]></FromUserName>
+    <CreateTime><![CDATA[${message.createTime}]]></CreateTime>
+    <MsgType><![CDATA[news]]></MsgType>
+    <ArticleCount><![CDATA[${message.articleCount}]]></ArticleCount>
+    <Articles>
+         #foreach( $imageTextItem in ${message.items} )
+            <item>
+                <Title><![CDATA[${imageTextItem.title}]]></Title>
+                <Description><![CDATA[${imageTextItem.description}]]></Description>
+                <PicUrl><![CDATA[${imageTextItem.picUrl}]]></PicUrl>
+                <Url><![CDATA[${imageTextItem.url}]]></Url>
+            </item>
+        #end
+    </Articles>
+    <FuncFlag>${message.funcFlag}</FuncFlag>
+</xml>

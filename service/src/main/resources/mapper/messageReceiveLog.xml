@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="messageReceiveLog">
+
+	<insert id="save" parameterType="com.blog.blogsit.modle.MessageReceiveLog" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+			wechat_message_rec_log
+			(
+  			`from_username`,
+		    `to_username`,
+		    `msg_createtime`,
+		    `msg_type`,
+		    `event_type`,
+		    `msg_id`,
+		    `content`
+			)
+		VALUES
+			(
+			#{fromUserName},
+			#{toUserName},
+			#{createTime},
+			#{msgTypeText},
+			#{event},
+			#{msgId},
+			#{wholeContent}
+			)
+	</insert>
+
+</mapper>

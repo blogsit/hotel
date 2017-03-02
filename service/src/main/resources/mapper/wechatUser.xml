@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wechatUser">
+
+	<insert id="insert" parameterType="com.blog.blogsit.modle.wechat.WechatUser">
+		INSERT INTO wechat_user(
+		  	user_openid,
+			public_openid,
+			nickname,
+			sex,
+			city,
+			country,
+			province,
+			language,
+			headimgurl,
+			subscribe_status,
+			subscribe_time,
+			create_time
+		) VALUES(
+			#{userOpenid},
+			#{publicOpenid},
+			#{nickname},
+			#{sex},
+			#{city},
+			#{country},
+			#{province},
+			#{language},
+			#{headimgurl},
+			#{subscribeStatus},
+			#{subscribeTime},
+			#{createTime}
+		)
+	</insert>
+	
+	<select id="selectUser" parameterType="com.blog.blogsit.modle.wechat.WechatUser" resultType="com.blog.blogsit.modle.wechat.WechatUser">
+		SELECT
+	       user_openid as userOpenid,
+	       public_openid as publicOpenid,
+	       nickname as nickname,
+	       sex as sex,
+	       city as city,
+	       country as country,
+	       province as province,
+	       language as language,
+	       headimgurl as headimgurl,
+	       subscribe_time as subscribeTime,
+	       subscribe_status as subscribeStatus,
+	       create_time as createTime
+		FROM 
+			wechat_user
+		where 
+			user_openid = #{userOpenid}
+			and public_openid = #{publicOpenid}
+		order by id
+		limit 1
+	</select>
+	
+	<update id="updateUser" parameterType="com.blog.blogsit.modle.wechat.WechatUser">
+		UPDATE
+			wechat_user
+		<set>
+			<if test="nickname != null and nickname != ''">
+				nickname = #{nickname},
+			</if>
+			<if test="sex != null and sex != 0">
+				sex = #{sex},
+			</if>
+			<if test="city != null and city != ''">
+				city = #{city},
+			</if>
+			<if test="country != null and country != ''">
+				country = #{country},
+			</if>
+			<if test="province != null and province != ''">
+				province = #{province},
+			</if>
+			<if test="language != null and language != ''">
+				language = #{language},
+			</if>
+			<if test="headimgurl != null and headimgurl != ''">
+				headimgurl = #{headimgurl},
+			</if>
+			<if test="subscribeStatus != null and subscribeStatus != 0">
+				subscribe_status = #{subscribeStatus},
+			</if>
+			<if test="subscribeTime != null and subscribeTime != ''">
+				subscribe_time = #{subscribeTime}
+			</if>
+		</set>
+		WHERE
+			user_openid = #{userOpenid}
+			and public_openid = #{publicOpenid}
+	</update>
+	
+</mapper>
