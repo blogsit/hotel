@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wechatUser">
 
-	<insert id="insert" parameterType="com.blog.blogsit.modle.wechat.WechatUser">
+	<insert id="insert" parameterType="com.blog.blogsit.model.wechat.WechatUser">
 		INSERT INTO wechat_user(
 		  	user_openid,
 			public_openid,
@@ -34,7 +34,7 @@
 		)
 	</insert>
 	
-	<select id="selectUser" parameterType="com.blog.blogsit.modle.wechat.WechatUser" resultType="com.blog.blogsit.modle.wechat.WechatUser">
+	<select id="selectUser" parameterType="com.blog.blogsit.model.wechat.WechatUser" resultType="com.blog.blogsit.model.wechat.WechatUser">
 		SELECT
 	       user_openid as userOpenid,
 	       public_openid as publicOpenid,
@@ -57,7 +57,7 @@
 		limit 1
 	</select>
 	
-	<update id="updateUser" parameterType="com.blog.blogsit.modle.wechat.WechatUser">
+	<update id="updateUser" parameterType="com.blog.blogsit.model.wechat.WechatUser">
 		UPDATE
 			wechat_user
 		<set>

@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="visitOrder">
 	<!-- 插入预约订单 -->
-	<insert id="insertVisitOrder" parameterType="com.blog.blogsit.modle.VisitOrder">
+	<insert id="insertVisitOrder" parameterType="com.blog.blogsit.model.VisitOrder">
 		insert into
 		visit_order(user_id,user_name,customer,address,is_audit,visiting_time,create_time)
 		values(#{userId},#{userName},#{customer},#{address},#{isAudit},#{visitingTime},#{createTime})
 	</insert>
 	<!-- 查询预约订单 -->
 	<select id="queryVisitOrder" parameterType="map"
-		resultType="com.blog.blogsit.modle.VisitOrder">
+		resultType="com.blog.blogsit.model.VisitOrder">
 		select
 		vo.id,
 		vo.user_id ,

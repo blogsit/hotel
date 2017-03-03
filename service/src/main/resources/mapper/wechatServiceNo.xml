@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wechatServiceNo">
 
-	<select id="loadAll" parameterType="map" resultType="com.blog.blogsit.modle.wechat.WechatServiceNo">
+	<select id="loadAll" parameterType="map" resultType="com.blog.blogsit.model.wechat.WechatServiceNo">
 		select
 			open_id as openId,
 			wechat_no as wechatNo,

@@ -2,19 +2,15 @@ package com.blog.blogsit.builder;
 
 import java.util.List;
 
-import com.blog.blogsit.modle.wechat.message.AbstractMessage;
-import com.blog.blogsit.modle.wechat.message.ImageTextMessage;
-import com.blog.blogsit.modle.wechat.message.DefaultEventMessage;
-import com.blog.blogsit.modle.wechat.message.DefaultGeneralMessage;
-import com.blog.blogsit.modle.wechat.message.EventType;
-import com.blog.blogsit.modle.wechat.message.ImageTextItem;
-import com.blog.blogsit.modle.wechat.message.MsgMode;
-import com.blog.blogsit.modle.wechat.message.MsgType;
-import com.blog.blogsit.modle.wechat.message.TextMessage;
-import com.blog.blogsit.modle.wechat.message.AbstractMessage;
-import com.blog.blogsit.modle.wechat.message.ImageTextMessage;
-import com.blog.blogsit.modle.wechat.message.AbstractMessage;
-import com.blog.blogsit.modle.wechat.message.ImageTextMessage;
+import com.blog.blogsit.model.wechat.message.AbstractMessage;
+import com.blog.blogsit.model.wechat.message.ImageTextMessage;
+import com.blog.blogsit.model.wechat.message.DefaultEventMessage;
+import com.blog.blogsit.model.wechat.message.DefaultGeneralMessage;
+import com.blog.blogsit.model.wechat.message.EventType;
+import com.blog.blogsit.model.wechat.message.ImageTextItem;
+import com.blog.blogsit.model.wechat.message.MsgMode;
+import com.blog.blogsit.model.wechat.message.MsgType;
+import com.blog.blogsit.model.wechat.message.TextMessage;
 
 /**
  * 

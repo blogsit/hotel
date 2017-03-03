@@ -1,6 +1,6 @@
 package com.blog.blogsit.monitor;
 
-import com.blog.blogsit.utils.JSONUtil;
+import com.blog.blogsit.utils.JsonUtil;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
@@ -58,7 +58,7 @@ public class SQLExceptionInterceptor implements Interceptor {
             end = System.currentTimeMillis();
             if (end - start > 200) {
                 String sql = mappedStatement.getBoundSql(parameter).getSql();
-                logger.info("slow sql {} millis. sql: {}. parameter: {}", end - start, sql, JSONUtil.toJSONString(parameter));
+                logger.info("slow sql {} millis. sql: {}. parameter: {}", end - start, sql, JsonUtil.toJSONString(parameter));
             }
 
             // select返回结果大于LOG_SIZE条，就记录日志；大于MONITOR_SIZE，就写监控
@@ -73,7 +73,7 @@ public class SQLExceptionInterceptor implements Interceptor {
             return object;
         } catch (Exception e) {
             String sql = mappedStatement.getBoundSql(parameter).getSql();
-            logger.error("SQL Error: {}, SQL Parameter: {}, Exception: {}", sql, JSONUtil.toJSONString(parameter), e.getMessage());
+            logger.error("SQL Error: {}, SQL Parameter: {}, Exception: {}", sql, JsonUtil.toJSONString(parameter), e.getMessage());
             throw e;
         }
     }

@@ -15,7 +15,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
  * @author hua.chen
  * @create 2016年11月15日11:43
  **/
-public class JSONUtil {
+public class JsonUtil {
 
     private static SerializeConfig config = null;
 
@@ -26,7 +26,7 @@ public class JSONUtil {
         parserConfig = new ParserConfig();
     }
 
-    public static final JSONProvider defaultJsonProvider = new JSONProvider() {
+    public static final JsonProvider defaultJsonProvider = new JsonProvider() {
 
         @Override
         public String toJSONString(Object obj) {

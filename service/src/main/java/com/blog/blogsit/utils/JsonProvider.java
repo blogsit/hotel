@@ -8,7 +8,7 @@ import com.alibaba.fastjson.TypeReference;
  * @author hua.chen
  * @create 2016年11月15日11:43
  **/
-public interface JSONProvider {
+public interface JsonProvider {
 
     /**
      * 将对象转换为JSON字符串

@@ -20,8 +20,11 @@
     </settings>
 
     <typeAliases>
+        <typeAlias alias="Supplier" type="com.blog.blogsit.model.Supplier"/>
     </typeAliases>
+    <typeHandlers>
 
+    </typeHandlers>
     <plugins>
         <plugin interceptor="com.blog.blogsit.monitor.SQLExceptionInterceptor"/>
     </plugins>

@@ -2,7 +2,7 @@
 package com.blog.blogsit.dao;
 
 
-import com.blog.blogsit.modle.Supplier;
+import com.blog.blogsit.model.Supplier;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
