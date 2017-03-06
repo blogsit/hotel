@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOG_HOME" value="/Users/blogsit/logs" />
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%X{qtraceid}][%X{traceId}][%d{yyyy/MM/dd HH:mm:ss.SSS}][%p][%logger{0}:%L] %m%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="DRUID_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">   
+        <encoding>UTF-8</encoding>
+    	<File>${LOG_HOME}/druid.log</File>
+    	<encoder>
+      		<pattern>[%X{qtraceid}][%X{traceId}][%d{yyyy/MM/dd HH:mm:ss.SSS}][%p][%logger{0}:%L] %m%n</pattern>
+    	</encoder>
+    	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      		<level>ERROR</level>
+   		</filter>
+    	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+     		<fileNamePattern>${LOG_HOME}/druid.log.%d{yyyy-MM-dd'.log'}</fileNamePattern>
+    	</rollingPolicy>
+    </appender>
+
+    <appender name="SQL_PLUGIN_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>UTF-8</encoder>
+        <file>${LOG_HOME}/sql.slow.log</file>
+        <encoder>
+            <pattern>[%X{qtraceid}][%X{traceId}][%d{yyyy/MM/dd HH:mm:ss.SSS}][%p][%logger{0}:%L] %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/sql.slow.log.%d{yyyy-MM-dd'.log'}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="TRANSACTION_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>UTF-8</encoder>
+        <file>${LOG_HOME}/slow.transaction.log</file>
+        <encoder>
+            <pattern>[%X{qtraceid}][%X{traceId}][%d{yyyy/MM/dd HH:mm:ss.SSS}][%p][%logger{0}:%L] %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/slow.transaction.log.%d{yyyy-MM-dd'.log'}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="SQL_PLUGIN_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>UTF-8</encoder>
+        <file>${LOG_HOME}/sql.exception.log</file>
+        <encoder>
+            <pattern>[%X{qtraceid}][%X{traceId}][%d{yyyy/MM/dd HH:mm:ss.SSS}][%p][%logger{0}:%L] %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/sql.exception.log.%d{yyyy-MM-dd'.log'}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <appender name="SQL_PLUGIN_LARGE_RESULT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>UTF-8</encoder>
+        <file>${LOG_HOME}/sql.largeResult.log</file>
+        <encoder>
+            <pattern>[%X{qtraceid}] %d{yyyy-MM-dd HH:mm:ss.SSS} %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/sql.largeResult.log.%d{yyyy-MM-dd'.log'}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="console" />
+    </root>
+    <logger name="org.springframework.jdbc.core" level="DEBUG" />
+    <logger name="java.sql" level="INFO" />
+    <logger name="com.blog.blogsit" level="INFO" />
+   	<logger name="com.alibaba.druid.filter.stat.StatFilter" level="ERROR">
+    	<appender-ref ref="DRUID_FILE"/>
+   	</logger>
+
+    <logger name="com.blog.blogsit.monitor.SQLExceptionInterceptor" additivity="false" level="INFO">
+        <appender-ref ref="SQL_PLUGIN_INFO"/>
+        <appender-ref ref="SQL_PLUGIN_ERROR"/>
+    </logger>
+
+</configuration>

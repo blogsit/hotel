@@ -23,7 +23,10 @@
         <typeAlias alias="Supplier" type="com.blog.blogsit.model.Supplier"/>
     </typeAliases>
     <typeHandlers>
-
+        <typeHandler handler="com.blog.blogsit.typehandler.SupplierStatusHandler"
+                     javaType="com.blog.blogsit.enums.SupplierStatus"/>
+        <typeHandler handler="com.blog.blogsit.typehandler.LanguageTypeHandler"
+                     javaType="com.blog.blogsit.enums.LanguageType"/>
     </typeHandlers>
     <plugins>
         <plugin interceptor="com.blog.blogsit.monitor.SQLExceptionInterceptor"/>

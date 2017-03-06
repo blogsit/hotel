@@ -8,6 +8,7 @@ import com.alibaba.fastjson.serializer.NameFilter;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * JSON解析类
@@ -21,6 +22,7 @@ public class JsonUtil {
 
     private static ParserConfig parserConfig = null;
 
+    private static ObjectMapper objectMapper = new ObjectMapper();
     static {
         config = new SerializeConfig();
         parserConfig = new ParserConfig();
@@ -77,4 +79,7 @@ public class JsonUtil {
         return defaultJsonProvider.fromJSONString(json, typeRef);
     }
 
+    public static ObjectMapper getObjectMapperInstance() {
+        return objectMapper;
+    }
 }

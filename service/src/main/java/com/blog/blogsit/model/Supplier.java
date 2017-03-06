@@ -1,6 +1,7 @@
 package com.blog.blogsit.model;
 
 
+import com.blog.blogsit.enums.SupplierStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -19,6 +20,10 @@ public class Supplier implements Serializable {
      * 供应商Id
      */
     private long id;
+    /**
+     * 供应商名称
+     */
+    private String name;
     /**
      * 代理商更新版本号
      */
@@ -48,62 +53,6 @@ public class Supplier implements Serializable {
         this.statusLog = statusLog;
     }
 
-    public enum SupplierStatus {
-        /**
-         * 启用
-         */
-        ENABLED(1, "启用"),
-        /**
-         * 禁用
-         */
-        DISABLED(0, "禁用"),
-        /**
-         * 已删除
-         */
-        DELETED(-1, "已删除"),
-        /**
-         * 审核中
-         */
-        REVIEWING(-2, "审核中"),
-        /**
-         * 审核未通过
-         */
-        REJECTED(-3, "审核未通过");
-
-        int code;
-        String desc;
-
-        private SupplierStatus(int code, String desc) {
-            this.code = code;
-            this.desc = desc;
-        }
-
-        public int code() {
-            return code;
-        }
-
-        public int getCode() {
-            return code;
-        }
-
-        public void setCode(int code) {
-            this.code = code;
-        }
-
-        public String getDesc() {
-            return desc;
-        }
-
-        public static SupplierStatus codeOf(int code) {
-            for (SupplierStatus sys : values()) {
-                if (sys.getCode() == code) {
-                    return sys;
-                }
-            }
-            return null;
-        }
-
-    }
 
     public long getId() {
         return id;
@@ -111,6 +60,14 @@ public class Supplier implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getVersion() {
